@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treffer Inmobiliaria — Venta y Arriendo de Propiedades</title>
+  <meta name="description" content="Corredora de propiedades en Chile. Venta y arriendo con fotografía HD, video y home staging profesional.">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════ -->
+  <nav class="nav" id="main-nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="#" data-nav="home" aria-label="Treffer Inmobiliaria — inicio">
+        <img src="assets/Treffer-logo-type.png" alt="Treffer Inmobiliaria">
+      </a>
+      <div class="nav__links">
+        <button class="nav__link" data-nav="listings" data-filter="Todos">Propiedades</button>
+        <button class="nav__link" data-nav="listings" data-filter="En arriendo">Arriendo</button>
+        <button class="nav__link" data-nav="listings" data-filter="En venta">Venta</button>
+        <button class="nav__link" data-nav="about">Nosotros</button>
+      </div>
+      <div class="nav__actions">
+        <button class="btn-outline" data-nav="contact">Contacto</button>
+        <button class="btn-primary" data-nav="publish">Publicar propiedad</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       MAIN CONTENT (SPA pages)
+  ══════════════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ──────────────────────────────────────────
+         HOME PAGE
+    ─────────────────────────────────────────── -->
+    <div id="page-home" class="page active">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero__inner">
+          <div class="hero__eyebrow">Corredora Treffer</div>
+          <h1 class="hero__title">Saca lo mejor<br>de tu inmueble</h1>
+          <p class="hero__subtitle">Venta y arriendo con fotografía HD, video y home staging profesional</p>
+          <div class="hero__search">
+            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9A9A9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input id="hero-search" type="text" placeholder="Buscar por ciudad, comuna o dirección…" aria-label="Buscar propiedades">
+            <button class="hero__search-btn" data-nav="listings">Buscar</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Category Pills -->
+      <div class="category-bar" id="home-category-bar">
+        <button class="pill active" data-category="Todos">Todos</button>
+        <button class="pill" data-category="Departamentos">Departamentos</button>
+        <button class="pill" data-category="Casas">Casas</button>
+        <button class="pill" data-category="Oficinas">Oficinas</button>
+        <button class="pill" data-category="Terrenos">Terrenos</button>
+        <button class="pill" data-category="En arriendo">En arriendo</button>
+        <button class="pill" data-category="En venta">En venta</button>
+      </div>
+
+      <!-- Featured Listings -->
+      <section class="featured-section">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">Propiedades destacadas</div>
+            <h2 class="section-title">Encuentra tu próximo hogar</h2>
+          </div>
+          <button class="section-link" data-nav="listings">
+            Ver todas
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+        <div class="property-grid" id="home-listings"></div>
+      </section>
+
+      <!-- Services Band -->
+      <section class="services-band">
+        <div class="services-band__inner">
+          <div class="services-band__header">
+            <div class="services-band__eyebrow">Nuestros servicios</div>
+            <h2 class="services-band__title">Todo lo que tu propiedad necesita</h2>
+          </div>
+          <div class="services-grid" id="services-grid"></div>
+        </div>
+      </section>
+
+      <!-- CTA Band -->
+      <section class="cta-band">
+        <div class="cta-band__inner">
+          <div class="cta-band__eyebrow">¿Eres propietario?</div>
+          <h2 class="cta-band__title">Garantizamos buenos ingresos sin preocupaciones</h2>
+          <p class="cta-band__desc">Nos encargamos de publicar, mostrar y gestionar tu propiedad con fotografía profesional y home staging.</p>
+          <div class="cta-band__actions">
+            <button class="btn-cta-primary" data-nav="publish">Publicar mi propiedad</button>
+            <button class="btn-cta-outline" data-nav="contact">Hablar con un agente</button>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /page-home -->
+
+    <!-- ──────────────────────────────────────────
+         LISTINGS PAGE
+    ─────────────────────────────────────────── -->
+    <div id="page-listings" class="page">
+      <div class="listings-page">
+        <h1 class="listings-page__title">Propiedades disponibles</h1>
+        <p class="listings-page__count" id="listings-count"></p>
+        <div class="filter-row" id="listings-filters"></div>
+        <div class="property-grid property-grid--lg" id="listings-grid"></div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────────────
+         DETAIL PAGE
+    ─────────────────────────────────────────── -->
+    <div id="page-detail" class="page">
+      <div class="detail-page">
+        <button class="back-btn" id="detail-back">
+          ← Volver a propiedades
+        </button>
+        <h1 class="detail-title" id="detail-title"></h1>
+        <div class="detail-location" id="detail-location">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span id="detail-location-text"></span>
+        </div>
+        <div class="photo-gallery" id="detail-gallery"></div>
+        <div class="detail-layout">
+          <div>
+            <div class="detail-stats" id="detail-stats"></div>
+            <div class="detail-section">
+              <h2 class="detail-section-title">Descripción</h2>
+              <p class="detail-desc" id="detail-desc">Luminoso departamento en el corazón de Providencia, con excelente conectividad y acceso a todos los servicios. Cocina equipada, living comedor amplio y dormitorios con clóset.</p>
+            </div>
+            <div class="detail-section">
+              <h2 class="detail-section-title">Características</h2>
+              <div class="features-grid" id="detail-features"></div>
+            </div>
+          </div>
+          <aside>
+            <div class="reservation-card">
+              <div class="reservation-price" id="reservation-price"></div>
+              <div class="reservation-fees">+ gastos comunes aprox. $45.000</div>
+              <div class="form-field">
+                <label class="form-label" for="res-name">Tu nombre</label>
+                <input class="form-input" id="res-name" type="text" placeholder="María González">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="res-email">Correo electrónico</label>
+                <input class="form-input" id="res-email" type="email" placeholder="maria@correo.com">
+              </div>
+              <div class="form-field" style="margin-bottom:20px">
+                <label class="form-label" for="res-phone">Teléfono</label>
+                <input class="form-input" id="res-phone" type="tel" placeholder="+56 9 1234 5678">
+              </div>
+              <button class="btn-reserve">Solicitar visita</button>
+              <button class="btn-contact-agent">Contactar agente</button>
+              <p class="reservation-note">Respuesta en menos de 24 horas</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────────────
+         CONTACT PAGE
+    ─────────────────────────────────────────── -->
+    <div id="page-contact" class="page">
+      <div class="contact-page">
+        <div class="page-header">
+          <div class="page-eyebrow">Estamos aquí para ayudarte</div>
+          <h1 class="page-title">Contáctanos</h1>
+        </div>
+        <div class="form-card">
+          <form id="contact-form" novalidate>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label" for="c-name">Nombre completo</label>
+                <input class="form-input" id="c-name" type="text" placeholder="Ej: Carlos Pérez">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="c-email">Correo</label>
+                <input class="form-input" id="c-email" type="email" placeholder="correo@ejemplo.com">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="c-phone">Teléfono</label>
+                <input class="form-input" id="c-phone" type="tel" placeholder="+56 9 …">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="c-type">Tipo de consulta</label>
+                <select class="form-select" id="c-type">
+                  <option>Quiero arrendar</option>
+                  <option>Quiero comprar</option>
+                  <option>Quiero publicar mi propiedad</option>
+                  <option>Otra consulta</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field" style="margin-bottom:20px">
+              <label class="form-label" for="c-message">Mensaje</label>
+              <textarea class="form-textarea" id="c-message" placeholder="Cuéntanos en qué podemos ayudarte…"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────────────
+         ABOUT PAGE (reuses contact layout)
+    ─────────────────────────────────────────── -->
+    <div id="page-about" class="page">
+      <div class="contact-page">
+        <div class="page-header">
+          <div class="page-eyebrow">Somos Treffer</div>
+          <h1 class="page-title">Nosotros</h1>
+        </div>
+        <div class="form-card">
+          <p style="font-size:15px;color:var(--body);line-height:1.7;margin-bottom:20px">
+            Treffer Inmobiliaria es una corredora de propiedades chilena especializada en la venta y arriendo de inmuebles en Santiago. Nos diferenciamos por ofrecer fotografía HD, video profesional y home staging incluidos en cada publicación.
+          </p>
+          <p style="font-size:15px;color:var(--body);line-height:1.7;margin-bottom:20px">
+            Nuestro equipo de agentes expertos se encarga de todo el proceso: desde la captación hasta la firma del contrato, garantizando una experiencia sin preocupaciones tanto para propietarios como para arrendatarios y compradores.
+          </p>
+          <p style="font-size:15px;color:var(--body);line-height:1.7;margin-bottom:32px">
+            Con años de experiencia en el mercado inmobiliario de Santiago, conocemos cada comuna, cada barrio y cada tipo de inmueble. Confía en Treffer para sacar lo mejor de tu propiedad.
+          </p>
+          <button class="btn-submit" data-nav="contact">Contactar al equipo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────────────
+         PUBLISH PAGE
+    ─────────────────────────────────────────── -->
+    <div id="page-publish" class="page">
+      <div class="publish-page">
+        <div class="page-header">
+          <div class="page-eyebrow">Para propietarios</div>
+          <h1 class="page-title">Publicar mi propiedad</h1>
+          <p class="publish-page__desc">Garantizamos buenos ingresos sin preocupaciones. Cuéntanos sobre tu propiedad.</p>
+        </div>
+
+        <div class="features-highlight" id="publish-highlights"></div>
+
+        <div class="form-card">
+          <form id="publish-form" novalidate>
+            <div class="form-grid-2" style="margin-bottom:16px">
+              <div class="form-field">
+                <label class="form-label" for="p-name">Tu nombre</label>
+                <input class="form-input" id="p-name" type="text" placeholder="Juan Pérez">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="p-email">Correo</label>
+                <input class="form-input" id="p-email" type="email" placeholder="juan@email.com">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="p-phone">Teléfono</label>
+                <input class="form-input" id="p-phone" type="tel" placeholder="+56 9 …">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="p-city">Ciudad</label>
+                <input class="form-input" id="p-city" type="text" placeholder="Santiago">
+              </div>
+              <div class="form-field form-full">
+                <label class="form-label" for="p-type">Tipo de propiedad</label>
+                <select class="form-select" id="p-type">
+                  <option>Casa</option>
+                  <option>Departamento</option>
+                  <option>Oficina</option>
+                  <option>Terreno</option>
+                </select>
+              </div>
+              <div class="form-field form-full">
+                <label class="form-label" for="p-address">Dirección aproximada</label>
+                <input class="form-input" id="p-address" type="text" placeholder="Ej: Providencia, Santiago">
+              </div>
+            </div>
+            <button type="submit" class="btn-submit">Quiero publicar mi propiedad</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </main><!-- /main-content -->
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/Treffer-floorplan.png" alt="Treffer Inmobiliaria">
+          <p>Venta y arriendo de propiedades con fotografía HD, video profesional y home staging en Chile.</p>
+        </div>
+        <div>
+          <div class="footer__col-title">Propiedades</div>
+          <a class="footer__link" href="#" data-nav="listings" data-filter="En arriendo">En arriendo</a>
+          <a class="footer__link" href="#" data-nav="listings" data-filter="En venta">En venta</a>
+          <a class="footer__link" href="#" data-nav="listings" data-filter="Departamentos">Departamentos</a>
+          <a class="footer__link" href="#" data-nav="listings" data-filter="Casas">Casas</a>
+          <a class="footer__link" href="#" data-nav="listings" data-filter="Oficinas">Oficinas</a>
+        </div>
+        <div>
+          <div class="footer__col-title">Servicios</div>
+          <span class="footer__link">Home Staging</span>
+          <span class="footer__link">Fotografía HD</span>
+          <span class="footer__link">Video 360°</span>
+          <span class="footer__link">Tasación</span>
+        </div>
+        <div>
+          <div class="footer__col-title">Empresa</div>
+          <a class="footer__link" href="#" data-nav="about">Nosotros</a>
+          <a class="footer__link" href="#" data-nav="contact">Contacto</a>
+          <span class="footer__link">Blog</span>
+          <span class="footer__link">Trabaja con nosotros</span>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Corredora Treffer. Todos los derechos reservados.</span>
+        <div class="footer__legal">
+          <span>Política de privacidad</span>
+          <span>Términos de uso</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
