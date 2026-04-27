@@ -176,28 +176,52 @@ function navigate(page, data) {
     if (data.filter) state.filter = data.filter;
   }
 
-  // Hide all pages
-  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  const current = document.querySelector('.page.active');
 
-  // Show target
-  const target = document.getElementById('page-' + page);
-  if (target) {
-    target.classList.add('active');
-    state.page = page;
+  const doSwitch = () => {
+    // Reset outgoing page styles
+    if (current) {
+      current.style.opacity = '';
+      current.style.transform = '';
+      current.style.transition = '';
+    }
+
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+
+    // Show target
+    const target = document.getElementById('page-' + page);
+    const activePage = target || document.getElementById('page-home');
+    activePage.classList.add('active');
+    state.page = target ? page : 'home';
+
+    // Entrance animation
+    activePage.classList.add('page-enter');
+    setTimeout(() => activePage.classList.remove('page-enter'), 500);
+
+    // Update nav active state
+    document.querySelectorAll('.nav__link').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.nav === state.page);
+    });
+
+    // Render dynamic content
+    renderPage(state.page);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Trigger scroll reveal on new page
+    setTimeout(observeRevealElements, 80);
+  };
+
+  // Animate out, then switch
+  if (current) {
+    current.style.transition = 'opacity 0.18s ease, transform 0.18s ease';
+    current.style.opacity = '0';
+    current.style.transform = 'translateY(10px)';
+    setTimeout(doSwitch, 170);
   } else {
-    document.getElementById('page-home').classList.add('active');
-    state.page = 'home';
+    doSwitch();
   }
-
-  // Update nav active state
-  document.querySelectorAll('.nav__link').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.nav === state.page);
-  });
-
-  // Render dynamic content for the page
-  renderPage(state.page);
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ── Render helpers ────────────────────────────────────── */
@@ -467,6 +491,32 @@ document.getElementById('publish-form').addEventListener('submit', e => {
   e.target.reset();
 });
 
+/* ── Scroll-reveal (Intersection Observer) ─────────────── */
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+function observeRevealElements() {
+  document.querySelectorAll('.reveal, .reveal-scale, .stagger').forEach(el => {
+    el.classList.remove('revealed');
+    revealObserver.observe(el);
+  });
+}
+
+/* ── Nav scroll shadow ─────────────────────────────────── */
+
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  nav.classList.toggle('scrolled', window.scrollY > 8);
+}, { passive: true });
+
 /* ── Init ──────────────────────────────────────────────── */
 
 renderPage('home');
+setTimeout(observeRevealElements, 100);

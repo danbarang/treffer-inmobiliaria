@@ -42,6 +42,8 @@
 
       <!-- Hero -->
       <section class="hero">
+        <div class="hero__orb" style="width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);top:-100px;left:-80px;animation-duration:13s;animation-delay:-3s"></div>
+        <div class="hero__orb" style="width:240px;height:240px;background:radial-gradient(circle,rgba(255,255,255,0.07) 0%,transparent 70%);bottom:20px;right:10%;animation-duration:9s;animation-delay:-6s"></div>
         <div class="hero__inner">
           <div class="hero__eyebrow">Corredora Treffer</div>
           <h1 class="hero__title">Saca lo mejor<br>de tu inmueble</h1>
@@ -69,10 +71,11 @@
 
       <!-- Featured Listings -->
       <section class="featured-section">
-        <div class="section-header">
+        <div class="section-header reveal">
           <div>
             <div class="section-eyebrow">Propiedades destacadas</div>
             <h2 class="section-title">Encuentra tu próximo hogar</h2>
+            <div class="section-divider"></div>
           </div>
           <button class="section-link" data-nav="listings">
             Ver todas
@@ -81,23 +84,23 @@
             </svg>
           </button>
         </div>
-        <div class="property-grid" id="home-listings"></div>
+        <div class="property-grid stagger" id="home-listings"></div>
       </section>
 
       <!-- Services Band -->
       <section class="services-band">
         <div class="services-band__inner">
-          <div class="services-band__header">
+          <div class="services-band__header reveal">
             <div class="services-band__eyebrow">Nuestros servicios</div>
             <h2 class="services-band__title">Todo lo que tu propiedad necesita</h2>
           </div>
-          <div class="services-grid" id="services-grid"></div>
+          <div class="services-grid stagger" id="services-grid"></div>
         </div>
       </section>
 
       <!-- CTA Band -->
       <section class="cta-band">
-        <div class="cta-band__inner">
+        <div class="cta-band__inner reveal">
           <div class="cta-band__eyebrow">¿Eres propietario?</div>
           <h2 class="cta-band__title">Garantizamos buenos ingresos sin preocupaciones</h2>
           <p class="cta-band__desc">Nos encargamos de publicar, mostrar y gestionar tu propiedad con fotografía profesional y home staging.</p>
@@ -115,10 +118,10 @@
     ─────────────────────────────────────────── -->
     <div id="page-listings" class="page">
       <div class="listings-page">
-        <h1 class="listings-page__title">Propiedades disponibles</h1>
-        <p class="listings-page__count" id="listings-count"></p>
-        <div class="filter-row" id="listings-filters"></div>
-        <div class="property-grid property-grid--lg" id="listings-grid"></div>
+        <h1 class="listings-page__title reveal">Propiedades disponibles</h1>
+        <p class="listings-page__count reveal" id="listings-count"></p>
+        <div class="filter-row stagger" id="listings-filters"></div>
+        <div class="property-grid property-grid--lg stagger" id="listings-grid"></div>
       </div>
     </div>
 
