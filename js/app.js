@@ -10,9 +10,9 @@
 const PROPERTIES = [
   {
     id: 1,
-    title: 'Departamento Providencia',
-    price: '$680.000/mes',
-    location: 'Providencia, Santiago',
+    title: 'Departamento en Castro',
+    price: '$380.000/mes',
+    location: 'Castro, Chiloé',
     badge: 'En arriendo',
     badgeBg: '#EBF4F5',
     badgeColor: '#2B6F72',
@@ -24,9 +24,9 @@ const PROPERTIES = [
   },
   {
     id: 2,
-    title: 'Casa Vitacura',
-    price: 'UF 7.200',
-    location: 'Vitacura, Santiago',
+    title: 'Casa con vista al mar',
+    price: 'UF 4.200',
+    location: 'Dalcahue, Chiloé',
     badge: 'En venta',
     badgeBg: '#2B6F72',
     badgeColor: 'white',
@@ -38,9 +38,9 @@ const PROPERTIES = [
   },
   {
     id: 3,
-    title: 'Depto. Ñuñoa',
-    price: '$550.000/mes',
-    location: 'Ñuñoa, Santiago',
+    title: 'Depto. centro Castro',
+    price: '$290.000/mes',
+    location: 'Castro, Chiloé',
     badge: 'Nuevo',
     badgeBg: 'white',
     badgeColor: '#333333',
@@ -52,13 +52,13 @@ const PROPERTIES = [
   },
   {
     id: 4,
-    title: 'Oficina Las Condes',
-    price: '$420.000/mes',
-    location: 'Las Condes, Santiago',
+    title: 'Local comercial Castro',
+    price: '$320.000/mes',
+    location: 'Castro, Chiloé',
     badge: 'En arriendo',
     badgeBg: '#EBF4F5',
     badgeColor: '#2B6F72',
-    attrs: ['45 m²', '1 baño', 'Piso 3'],
+    attrs: ['65 m²', '1 baño', 'Piso 1'],
     color1: '#C8C4B8',
     color2: '#A8A090',
     category: 'Oficinas',
@@ -66,9 +66,9 @@ const PROPERTIES = [
   },
   {
     id: 5,
-    title: 'Casa La Reina',
-    price: 'UF 5.800',
-    location: 'La Reina, Santiago',
+    title: 'Casa en Ancud',
+    price: 'UF 3.500',
+    location: 'Ancud, Chiloé',
     badge: 'En venta',
     badgeBg: '#2B6F72',
     badgeColor: 'white',
@@ -80,17 +80,17 @@ const PROPERTIES = [
   },
   {
     id: 6,
-    title: 'Depto. Miraflores',
-    price: '$490.000/mes',
-    location: 'Santiago Centro',
-    badge: 'En arriendo',
-    badgeBg: '#EBF4F5',
-    badgeColor: '#2B6F72',
-    attrs: ['1 dorm', '1 baño', '42 m²'],
+    title: 'Terreno en Quellón',
+    price: 'UF 1.800',
+    location: 'Quellón, Chiloé',
+    badge: 'En venta',
+    badgeBg: '#2B6F72',
+    badgeColor: 'white',
+    attrs: ['800 m²', 'Esquina', 'Uso mixto'],
     color1: '#B4C4C8',
     color2: '#90A8AC',
-    category: 'Departamentos',
-    type: 'En arriendo',
+    category: 'Terrenos',
+    type: 'En venta',
   },
 ];
 
@@ -363,7 +363,7 @@ function updateListingsGrid(grid, countEl) {
   if (state.filter !== 'Todos') {
     filtered = PROPERTIES.filter(p => p.type === state.filter || p.category === state.filter);
   }
-  if (countEl) countEl.textContent = `${filtered.length} propiedad${filtered.length !== 1 ? 'es' : ''} encontrada${filtered.length !== 1 ? 's' : ''} en Santiago`;
+  if (countEl) countEl.textContent = `${filtered.length} propiedad${filtered.length !== 1 ? 'es' : ''} encontrada${filtered.length !== 1 ? 's' : ''} en Castro y Chiloé`;
   renderPropertyGrid(grid, filtered);
 }
 
