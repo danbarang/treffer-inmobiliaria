@@ -298,6 +298,15 @@ input, select, textarea { font-family: var(--font-body); }
   margin: 0 auto;
 }
 
+.hero__icon {
+  height: 72px;
+  width: auto;
+  margin: 0 auto 20px;
+  display: block;
+  animation: fadeUp 0.6s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+}
+
 .hero__eyebrow {
   font-family: var(--font-body);
   font-size: 13px;
@@ -1394,10 +1403,10 @@ input, select, textarea { font-family: var(--font-body); }
 
 /* ── Hero animations ── */
 
-.hero__eyebrow  { animation: slideDown 0.6s 0.1s cubic-bezier(0.22,1,0.36,1) both; }
-.hero__title    { animation: fadeUp   0.7s 0.25s cubic-bezier(0.22,1,0.36,1) both; }
-.hero__subtitle { animation: fadeUp   0.7s 0.42s cubic-bezier(0.22,1,0.36,1) both; }
-.hero__search   { animation: fadeUp   0.7s 0.58s cubic-bezier(0.22,1,0.36,1) both; }
+.hero__eyebrow  { animation: slideDown 0.6s 0.25s cubic-bezier(0.22,1,0.36,1) both; }
+.hero__title    { animation: fadeUp   0.7s 0.38s cubic-bezier(0.22,1,0.36,1) both; }
+.hero__subtitle { animation: fadeUp   0.7s 0.52s cubic-bezier(0.22,1,0.36,1) both; }
+.hero__search   { animation: fadeUp   0.7s 0.65s cubic-bezier(0.22,1,0.36,1) both; }
 
 /* Animated gradient hero background */
 .hero {
