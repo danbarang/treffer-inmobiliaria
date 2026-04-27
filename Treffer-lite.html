@@ -111,6 +111,7 @@ input, select, textarea { font-family: var(--font-body); }
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .nav__inner {
@@ -123,6 +124,79 @@ input, select, textarea { font-family: var(--font-body); }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  transition: height 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* ── Compact search bar (aparece al scrollear) ── */
+.nav__search-compact {
+  flex: 1;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1.5px solid var(--hairline);
+  border-radius: var(--r-full);
+  padding: 9px 12px 9px 18px;
+  box-shadow: var(--shadow-card);
+  cursor: text;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.96);
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.2s ease, border-color 0.2s ease;
+  pointer-events: none;
+}
+
+.nav__search-compact:hover {
+  border-color: var(--primary-muted);
+  box-shadow: var(--shadow-hover);
+}
+
+.nav__search-compact input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--ink);
+  background: transparent;
+  min-width: 0;
+  font-weight: 500;
+}
+
+.nav__search-compact input::placeholder { color: var(--muted); font-weight: 400; }
+
+.nav__search-compact__btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--r-full);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.nav__search-compact__btn:hover { background: var(--primary-dark); transform: scale(1.08); }
+
+/* Scrolled state — muestra el buscador, oculta los links normales */
+.nav.scrolled-hero .nav__links {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav.scrolled-hero .nav__search-compact {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.nav__links {
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .nav__logo {
@@ -135,7 +209,10 @@ input, select, textarea { font-family: var(--font-body); }
 .nav__logo img {
   height: 40px;
   width: auto;
+  transition: height 0.3s ease;
 }
+
+.nav.scrolled-hero .nav__logo img { height: 34px; }
 
 .nav__links {
   display: flex;
@@ -1659,6 +1736,20 @@ input, select, textarea { font-family: var(--font-body); }
         <button class="nav__link" data-nav="listings" data-filter="En venta">Venta</button>
         <button class="nav__link" data-nav="about">Nosotros</button>
       </div>
+
+      <!-- Buscador compacto (visible al scrollear en home) -->
+      <div class="nav__search-compact" id="nav-search-compact">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9A9A9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input id="nav-search-input" type="text" placeholder="Buscar propiedad, comuna…">
+        <button class="nav__search-compact__btn" data-nav="listings" aria-label="Buscar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+      </div>
+
       <div class="nav__actions">
         <button class="btn-outline" data-nav="contact">Contacto</button>
         <button class="btn-primary" data-nav="publish">Publicar propiedad</button>
@@ -2491,12 +2582,24 @@ function observeRevealElements() {
   });
 }
 
-/* ── Nav scroll shadow ─────────────────────────────────── */
+/* ── Nav scroll: shadow + compact search ───────────────── */
 
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('main-nav');
+  const onHome = state.page === 'home';
+  const heroEl = document.querySelector('.hero');
+  const heroBottom = heroEl ? heroEl.getBoundingClientRect().bottom : 0;
+
   nav.classList.toggle('scrolled', window.scrollY > 8);
+  nav.classList.toggle('scrolled-hero', onHome && heroBottom < 10);
 }, { passive: true });
+
+/* Click on compact search bar body focuses the input */
+document.getElementById('nav-search-compact').addEventListener('click', e => {
+  if (!e.target.closest('button')) {
+    document.getElementById('nav-search-input').focus();
+  }
+});
 
 /* ── Init ──────────────────────────────────────────────── */
 

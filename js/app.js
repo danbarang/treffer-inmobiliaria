@@ -509,12 +509,24 @@ function observeRevealElements() {
   });
 }
 
-/* ── Nav scroll shadow ─────────────────────────────────── */
+/* ── Nav scroll: shadow + compact search ───────────────── */
 
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('main-nav');
+  const onHome = state.page === 'home';
+  const heroEl = document.querySelector('.hero');
+  const heroBottom = heroEl ? heroEl.getBoundingClientRect().bottom : 0;
+
   nav.classList.toggle('scrolled', window.scrollY > 8);
+  nav.classList.toggle('scrolled-hero', onHome && heroBottom < 10);
 }, { passive: true });
+
+/* Click on compact search bar body focuses the input */
+document.getElementById('nav-search-compact').addEventListener('click', e => {
+  if (!e.target.closest('button')) {
+    document.getElementById('nav-search-input').focus();
+  }
+});
 
 /* ── Init ──────────────────────────────────────────────── */
 

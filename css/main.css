@@ -115,6 +115,7 @@ input, select, textarea { font-family: var(--font-body); }
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .nav__inner {
@@ -127,6 +128,79 @@ input, select, textarea { font-family: var(--font-body); }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  transition: height 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* ── Compact search bar (aparece al scrollear) ── */
+.nav__search-compact {
+  flex: 1;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1.5px solid var(--hairline);
+  border-radius: var(--r-full);
+  padding: 9px 12px 9px 18px;
+  box-shadow: var(--shadow-card);
+  cursor: text;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.96);
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.2s ease, border-color 0.2s ease;
+  pointer-events: none;
+}
+
+.nav__search-compact:hover {
+  border-color: var(--primary-muted);
+  box-shadow: var(--shadow-hover);
+}
+
+.nav__search-compact input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--ink);
+  background: transparent;
+  min-width: 0;
+  font-weight: 500;
+}
+
+.nav__search-compact input::placeholder { color: var(--muted); font-weight: 400; }
+
+.nav__search-compact__btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--r-full);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.nav__search-compact__btn:hover { background: var(--primary-dark); transform: scale(1.08); }
+
+/* Scrolled state — muestra el buscador, oculta los links normales */
+.nav.scrolled-hero .nav__links {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav.scrolled-hero .nav__search-compact {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.nav__links {
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .nav__logo {
@@ -139,7 +213,10 @@ input, select, textarea { font-family: var(--font-body); }
 .nav__logo img {
   height: 40px;
   width: auto;
+  transition: height 0.3s ease;
 }
+
+.nav.scrolled-hero .nav__logo img { height: 34px; }
 
 .nav__links {
   display: flex;
