@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--color-canvas); padding: 20px; font-family: 'Helvetica', Arial, sans-serif; display: flex; flex-direction: column; gap: 16px; }
+
+  .logo-row { display: flex; gap: 12px; }
+  .logo-cell { flex: 1; border-radius: 10px; padding: 28px 32px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .logo-cell img { max-width: 100%; max-height: 64px; width: auto; height: auto; display: block; }
+
+  .info-row { display: flex; gap: 12px; align-items: stretch; }
+  .info-cell { background: white; border-radius: 10px; padding: 14px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); flex: 1; }
+  .info-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9A9A9A; margin-bottom: 6px; }
+  .color-chips { display: flex; gap: 6px; }
+  .chip { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #6B6B6B; }
+  .dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.08); }
+</style>
+</head>
+<body>
+
+<!-- Logo on white -->
+<div class="logo-row">
+  <div class="logo-cell" style="background:#FFFFFF; border: 1px solid #E2DED5;">
+    <img src="../assets/Treffer-logo-type.png" alt="Treffer — sobre blanco">
+  </div>
+  <div class="logo-cell" style="background:#EAE6D9; border: 1px solid #D5D0C4;">
+    <img src="../assets/Treffer-logo-type.png" alt="Treffer — sobre canvas">
+  </div>
+  <div class="logo-cell" style="background:#2B6F72;">
+    <img src="../assets/Treffer-floorplan.png" alt="Treffer — sobre teal" style="max-height:60px">
+  </div>
+  <div class="logo-cell" style="background:#333333;">
+    <img src="../assets/Treffer-floorplan.png" alt="Treffer — sobre oscuro" style="max-height:60px">
+  </div>
+</div>
+
+<!-- Color info -->
+<div class="info-row">
+  <div class="info-cell">
+    <div class="info-label">Colores del logotipo</div>
+    <div class="color-chips">
+      <div class="chip"><div class="dot" style="background:#3D4349"></div>#3D4349 — Tipografía</div>
+      <div class="chip"><div class="dot" style="background:#2B7070"></div>#2B7070 — Ícono llave</div>
+      <div class="chip"><div class="dot" style="background:#E8E4D8"></div>#E8E4D8 — Variante clara</div>
+    </div>
+  </div>
+  <div class="info-cell">
+    <div class="info-label">Uso</div>
+    <div style="font-size:12px; color:#6B6B6B; line-height:1.6">
+      <strong style="color:#333">Oscuro</strong> — fondos blancos y crema &nbsp;·&nbsp;
+      <strong style="color:#333">Claro</strong> — fondos teal y oscuros
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

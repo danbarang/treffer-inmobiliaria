@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-canvas); padding: 20px; font-family: var(--font-body); }
+  .section { margin-bottom: 18px; }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted-soft); margin-bottom: 10px; }
+  .shadow-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .shadow-box { background: white; border-radius: var(--radius-md); padding: 16px 20px; min-width: 140px; }
+  .shadow-name { font-size: 12px; font-weight: 600; color: var(--color-ink); }
+  .shadow-desc { font-size: 11px; color: var(--color-muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="section">
+  <div class="label">Elevation System</div>
+  <div class="shadow-row">
+    <div class="shadow-box" style="box-shadow:none;border:1px solid var(--color-hairline)">
+      <div class="shadow-name">Flat</div>
+      <div class="shadow-desc">No shadow — editorial bands, hero, footer</div>
+    </div>
+    <div class="shadow-box" style="box-shadow:0 2px 8px rgba(0,0,0,0.08),0 0 0 1px rgba(0,0,0,0.04)">
+      <div class="shadow-name">Card</div>
+      <div class="shadow-desc">Default card elevation</div>
+    </div>
+    <div class="shadow-box" style="box-shadow:0 8px 24px rgba(0,0,0,0.12),0 0 0 1px rgba(0,0,0,0.04)">
+      <div class="shadow-name">Hover</div>
+      <div class="shadow-desc">Card hover / dropdown menus</div>
+    </div>
+    <div class="shadow-box" style="box-shadow:0 20px 60px rgba(0,0,0,0.18),0 0 0 1px rgba(0,0,0,0.06)">
+      <div class="shadow-name">Modal</div>
+      <div class="shadow-desc">Dialog / overlay panels</div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="label">Teal Tint Scale</div>
+  <div style="display:flex;gap:0;border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow-sm)">
+    <div style="flex:1;height:40px;background:#1E5255;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;font-weight:600">Dark</div>
+    <div style="flex:1;height:40px;background:#2B6F72;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;font-weight:600">Primary</div>
+    <div style="flex:1;height:40px;background:#3D8C90;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;font-weight:600">Light</div>
+    <div style="flex:1;height:40px;background:#C4DCDD;display:flex;align-items:center;justify-content:center;font-size:10px;color:#2B6F72;font-weight:600">Muted</div>
+    <div style="flex:1;height:40px;background:#EBF4F5;display:flex;align-items:center;justify-content:center;font-size:10px;color:#2B6F72;font-weight:600">Subtle</div>
+  </div>
+</div>
+</body>
+</html>

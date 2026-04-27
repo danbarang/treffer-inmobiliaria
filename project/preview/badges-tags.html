@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-canvas); padding: 20px; font-family: var(--font-body); }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted-soft); margin-bottom: 10px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+  .badge { display: inline-flex; align-items: center; gap: 5px; border-radius: var(--radius-xs); padding: 4px 10px; font-size: 12px; font-weight: 600; }
+  .pill { border-radius: var(--radius-full); padding: 4px 12px; font-size: 12px; font-weight: 600; }
+  .tag { border-radius: var(--radius-xs); padding: 2px 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<div class="label">Status Badges</div>
+<div class="row">
+  <span class="badge" style="background:#E6F4EE;color:#2A7D5A"><span class="dot" style="background:#2A7D5A"></span>Disponible</span>
+  <span class="badge" style="background:#FDF0E0;color:#A05C1A"><span class="dot" style="background:#A05C1A"></span>Reservado</span>
+  <span class="badge" style="background:#FAEAE7;color:#B33A2A"><span class="dot" style="background:#B33A2A"></span>Vendido</span>
+  <span class="badge" style="background:#EBF4F5;color:#2B6F72"><span class="dot" style="background:#2B6F72"></span>Nuevo</span>
+  <span class="badge" style="background:var(--color-surface-strong);color:var(--color-muted)"><span class="dot" style="background:var(--color-muted-soft)"></span>Inactivo</span>
+</div>
+
+<div class="label">Property Type Pills</div>
+<div class="row">
+  <span class="pill" style="background:var(--color-primary);color:white">En venta</span>
+  <span class="pill" style="background:var(--color-primary-dark);color:white">En arriendo</span>
+  <span class="pill" style="background:white;color:var(--color-ink);border:1.5px solid var(--color-hairline)">Casa</span>
+  <span class="pill" style="background:white;color:var(--color-ink);border:1.5px solid var(--color-hairline)">Departamento</span>
+  <span class="pill" style="background:white;color:var(--color-ink);border:1.5px solid var(--color-hairline)">Oficina</span>
+  <span class="pill" style="background:white;color:var(--color-ink);border:1.5px solid var(--color-hairline)">Terreno</span>
+</div>
+
+<div class="label">Feature Tags</div>
+<div class="row">
+  <span class="tag" style="background:#EBF4F5;color:var(--color-primary)">Home Staging</span>
+  <span class="tag" style="background:#E6F4EE;color:#2A7D5A">Fotografía HD</span>
+  <span class="tag" style="background:#FDF0E0;color:#A05C1A">Video 360°</span>
+  <span class="tag" style="background:var(--color-surface-strong);color:var(--color-muted)">Mascotas OK</span>
+  <span class="tag" style="background:var(--color-surface-strong);color:var(--color-muted)">Estacionamiento</span>
+</div>
+
+<div class="label">Rating</div>
+<div class="row">
+  <div style="display:flex;align-items:center;gap:6px">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#B8860B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <span style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--color-ink)">4.9</span>
+    <span style="font-size:13px;color:var(--color-muted)">(42 evaluaciones)</span>
+  </div>
+  <div style="display:flex;gap:2px">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="#B8860B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="#B8860B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="#B8860B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="#B8860B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="#D5D0C4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+  </div>
+</div>
+
+</body>
+</html>

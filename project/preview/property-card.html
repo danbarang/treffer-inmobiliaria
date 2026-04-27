@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-canvas); padding: 20px; font-family: var(--font-body); }
+  .cards { display: flex; gap: 16px; flex-wrap: wrap; }
+  .card { background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-card); overflow: hidden; width: 220px; transition: box-shadow 200ms, transform 200ms; cursor: pointer; }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .photo { height: 140px; background: #C4DCDD; position: relative; display: flex; align-items: flex-end; justify-content: flex-end; }
+  .photo-inner { width: 100%; height: 100%; object-fit: cover; }
+  .photo-grad { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.25) 0%, transparent 60%); }
+  .heart { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.85); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .badge { position: absolute; top: 10px; left: 10px; background: white; border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 600; color: var(--color-ink); box-shadow: var(--shadow-sm); }
+  .meta { padding: 12px 14px; }
+  .meta-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .meta-title { font-size: 14px; font-weight: 600; color: var(--color-ink); line-height: 1.3; }
+  .meta-price { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--color-primary); white-space: nowrap; }
+  .meta-sub { font-size: 12px; color: var(--color-muted); margin-top: 4px; }
+  .meta-attrs { display: flex; gap: 10px; margin-top: 8px; }
+  .attr { font-size: 11px; color: var(--color-muted); display: flex; align-items: center; gap: 3px; }
+  .placeholder-img { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div class="cards">
+
+  <!-- Card 1 - En Arriendo -->
+  <div class="card">
+    <div class="photo" style="background:linear-gradient(135deg,#C4DCDD 0%,#8FBFC2 100%)">
+      <div class="photo-grad"></div>
+      <div class="badge">En arriendo</div>
+      <div class="heart">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="placeholder-img">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-top">
+        <div class="meta-title">Depto. Providencia</div>
+        <div class="meta-price">$680K</div>
+      </div>
+      <div class="meta-sub">Las Condes · 2 km del metro</div>
+      <div class="meta-attrs">
+        <span class="attr"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 0 4H2"/><path d="M2 12h18a2 2 0 0 1 0 4H2"/></svg>3 dorm</span>
+        <span class="attr"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 10h4v4h-4z"/></svg>2 baños</span>
+        <span class="attr">72 m²</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2 - En Venta with heart saved -->
+  <div class="card">
+    <div class="photo" style="background:linear-gradient(135deg,#D4C9B0 0%,#B8A98A 100%)">
+      <div class="photo-grad"></div>
+      <div class="badge" style="background:var(--color-primary);color:white">En venta</div>
+      <div class="heart">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#2B6F72" stroke="#2B6F72" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="placeholder-img">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-top">
+        <div class="meta-title">Casa en Vitacura</div>
+        <div class="meta-price">UF 7.200</div>
+      </div>
+      <div class="meta-sub">Vitacura · Jardín privado</div>
+      <div class="meta-attrs">
+        <span class="attr">4 dorm</span>
+        <span class="attr">3 baños</span>
+        <span class="attr">180 m²</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3 - Nuevo -->
+  <div class="card">
+    <div class="photo" style="background:linear-gradient(135deg,#B8C8C4 0%,#8FA8A4 100%)">
+      <div class="photo-grad"></div>
+      <div class="badge" style="background:#EBF4F5;color:var(--color-primary)">Nuevo</div>
+      <div class="heart">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="placeholder-img">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-top">
+        <div class="meta-title">Oficina Ñuñoa</div>
+        <div class="meta-price">$420K</div>
+      </div>
+      <div class="meta-sub">Ñuñoa · Piso 3 · Estacionamiento</div>
+      <div class="meta-attrs">
+        <span class="attr">45 m²</span>
+        <span class="attr">1 baño</span>
+        <span class="attr">⭑ 4.8</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

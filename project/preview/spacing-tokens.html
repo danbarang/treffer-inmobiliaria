@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-canvas); padding: 20px; font-family: var(--font-body); }
+  .section { margin-bottom: 16px; }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted-soft); margin-bottom: 8px; }
+  .scale { display: flex; gap: 6px; align-items: flex-end; }
+  .step { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .bar { background: var(--color-primary-muted); border-radius: 3px; width: 36px; }
+  .step-label { font-size: 10px; color: var(--color-muted); }
+  .step-val { font-size: 10px; font-weight: 600; color: var(--color-ink); }
+  .radii-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 6px; }
+  .radius-chip { background: white; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 14px; gap: 6px; }
+  .radius-label { font-size: 10px; color: var(--color-muted); }
+  .radius-val { font-size: 11px; font-weight: 600; color: var(--color-ink); }
+</style>
+</head>
+<body>
+<div class="section">
+  <div class="label">Spacing Scale</div>
+  <div class="scale">
+    <div class="step"><div class="bar" style="height:4px"></div><div class="step-label">1</div><div class="step-val">4</div></div>
+    <div class="step"><div class="bar" style="height:8px"></div><div class="step-label">2</div><div class="step-val">8</div></div>
+    <div class="step"><div class="bar" style="height:12px"></div><div class="step-label">3</div><div class="step-val">12</div></div>
+    <div class="step"><div class="bar" style="height:16px"></div><div class="step-label">4</div><div class="step-val">16</div></div>
+    <div class="step"><div class="bar" style="height:20px"></div><div class="step-label">5</div><div class="step-val">20</div></div>
+    <div class="step"><div class="bar" style="height:24px"></div><div class="step-label">6</div><div class="step-val">24</div></div>
+    <div class="step"><div class="bar" style="height:32px"></div><div class="step-label">8</div><div class="step-val">32</div></div>
+    <div class="step"><div class="bar" style="height:40px"></div><div class="step-label">10</div><div class="step-val">40</div></div>
+    <div class="step"><div class="bar" style="height:48px"></div><div class="step-label">12</div><div class="step-val">48</div></div>
+    <div class="step"><div class="bar" style="height:64px"></div><div class="step-label">16</div><div class="step-val">64</div></div>
+    <div class="step"><div class="bar" style="height:80px"></div><div class="step-label">20</div><div class="step-val">80</div></div>
+  </div>
+</div>
+<div class="section">
+  <div class="label">Border Radius</div>
+  <div class="radii-row">
+    <div class="radius-chip" style="border-radius:0px;border:1.5px solid var(--color-primary)"><div class="radius-val">0px</div><div class="radius-label">none</div></div>
+    <div class="radius-chip" style="border-radius:4px;border:1.5px solid var(--color-primary)"><div class="radius-val">4px</div><div class="radius-label">xs</div></div>
+    <div class="radius-chip" style="border-radius:8px;border:1.5px solid var(--color-primary)"><div class="radius-val">8px</div><div class="radius-label">sm</div></div>
+    <div class="radius-chip" style="border-radius:12px;border:1.5px solid var(--color-primary)"><div class="radius-val">12px</div><div class="radius-label">md</div></div>
+    <div class="radius-chip" style="border-radius:20px;border:1.5px solid var(--color-primary)"><div class="radius-val">20px</div><div class="radius-label">lg</div></div>
+    <div class="radius-chip" style="border-radius:9999px;border:1.5px solid var(--color-primary);padding:10px 20px"><div class="radius-val">full</div><div class="radius-label">pill</div></div>
+  </div>
+</div>
+</body>
+</html>

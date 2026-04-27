@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-canvas); font-family: var(--font-body); padding: 20px; box-sizing: border-box; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .swatch { border-radius: var(--radius-sm); overflow: hidden; flex: 1; min-width: 90px; box-shadow: var(--shadow-sm); }
+  .swatch-color { height: 72px; border-bottom: 1px solid #E0DBD2; }
+  .swatch-info { background: white; padding: 8px 10px; }
+  .swatch-name { font-size: 11px; font-weight: 600; color: #333; }
+  .swatch-hex { font-size: 11px; color: #888; font-family: monospace; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#EAE6D9"></div>
+    <div class="swatch-info"><div class="swatch-name">Canvas</div><div class="swatch-hex">#EAE6D9</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#FFFFFF"></div>
+    <div class="swatch-info"><div class="swatch-name">Surface Card</div><div class="swatch-hex">#FFFFFF</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#F4F1EA"></div>
+    <div class="swatch-info"><div class="swatch-name">Surface Soft</div><div class="swatch-hex">#F4F1EA</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#DEDAD0"></div>
+    <div class="swatch-info"><div class="swatch-name">Surface Strong</div><div class="swatch-hex">#DEDAD0</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#D5D0C4"></div>
+    <div class="swatch-info"><div class="swatch-name">Hairline</div><div class="swatch-hex">#D5D0C4</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#333333"></div>
+    <div class="swatch-info"><div class="swatch-name">Ink</div><div class="swatch-hex">#333333</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#6B6B6B"></div>
+    <div class="swatch-info"><div class="swatch-name">Muted</div><div class="swatch-hex">#6B6B6B</div></div>
+  </div>
+</div>
+</body>
+</html>

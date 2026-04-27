@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-canvas); padding: 20px; font-family: var(--font-body); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted-soft); margin-bottom: 8px; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: none; cursor: pointer; font-family: var(--font-body); font-size: 15px; font-weight: 500; line-height: 1; padding: 13px 24px; border-radius: var(--radius-sm); transition: background var(--transition-fast); text-decoration: none; }
+  .btn-primary { background: var(--color-primary); color: white; }
+  .btn-primary:hover { background: var(--color-primary-dark); }
+  .btn-primary-disabled { background: var(--color-primary-muted); color: white; cursor: not-allowed; }
+  .btn-secondary { background: white; color: var(--color-ink); border: 1.5px solid var(--color-ink); padding: 11px 22px; }
+  .btn-ghost { background: transparent; color: var(--color-primary); border: 1.5px solid var(--color-primary); padding: 11px 22px; }
+  .btn-text { background: transparent; color: var(--color-primary); padding: 11px 4px; text-decoration: underline; font-size: 14px; }
+  .btn-sm { font-size: 13px; padding: 9px 16px; border-radius: var(--radius-xs); }
+  .btn-lg { font-size: 17px; padding: 16px 32px; border-radius: var(--radius-sm); }
+  .btn-teal-dark { background: var(--color-primary-dark); color: white; }
+  .btn-pill { border-radius: var(--radius-full); padding: 10px 20px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="label">Primary</div>
+<div class="row">
+  <button class="btn btn-primary">Ver propiedades</button>
+  <button class="btn btn-primary btn-sm">Buscar</button>
+  <button class="btn btn-primary btn-lg">Solicitar tasación</button>
+  <button class="btn btn-primary" disabled style="background:#C4DCDD;color:white;cursor:not-allowed">No disponible</button>
+</div>
+
+<div class="label">Secondary & Ghost</div>
+<div class="row">
+  <button class="btn btn-secondary">Cancelar</button>
+  <button class="btn btn-ghost">Contactar agente</button>
+  <button class="btn btn-text">Ver más →</button>
+</div>
+
+<div class="label">Dark Teal & Pill</div>
+<div class="row">
+  <button class="btn btn-teal-dark">Publicar propiedad</button>
+  <button class="btn btn-primary btn-pill">En venta</button>
+  <button class="btn btn-ghost btn-pill">En arriendo</button>
+</div>
+
+<div class="label">On Dark Surface</div>
+<div class="row" style="background:var(--color-primary);padding:12px;border-radius:var(--radius-sm)">
+  <button class="btn" style="background:white;color:var(--color-primary)">Saber más</button>
+  <button class="btn" style="background:transparent;color:white;border:1.5px solid rgba(255,255,255,0.6);padding:11px 22px;">Ver propiedades</button>
+</div>
+</body>
+</html>
