@@ -129,7 +129,7 @@
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
+html { font-size: 16px; overflow-x: hidden; }
 body {
   font-family: var(--font-body);
   background: var(--canvas);
@@ -1290,8 +1290,14 @@ input, select, textarea { font-family: var(--font-body); }
    RESPONSIVE
    ================================================================ */
 @media (max-width: 768px) {
+  /* Nav: ocultar links, search compacto y botón secundario */
   .nav__links { display: none; }
+  .nav__search-compact { display: none !important; }
   .nav__actions .btn-outline { display: none; }
+
+  /* Nav: acotar el botón principal */
+  .nav__inner { padding: 0 12px; gap: 8px; }
+  .nav__actions .btn-primary { padding: 8px 14px; font-size: 13px; }
 
   .hero { padding: 56px 20px; }
   .hero__search { flex-wrap: wrap; border-radius: var(--r-md); padding: 16px; }
