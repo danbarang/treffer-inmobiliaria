@@ -17,10 +17,9 @@ const PROPERTIES = [
     badgeBg: '#EBF4F5',
     badgeColor: '#2B6F72',
     attrs: ['3 dorm', '2 baños', '72 m²'],
-    color1: '#C4DCDD',
-    color2: '#8FBFC2',
-    category: 'Departamentos',
-    type: 'En arriendo',
+    color1: '#C4DCDD', color2: '#8FBFC2',
+    category: 'Departamentos', type: 'En arriendo',
+    lat: -42.4812, lng: -73.7641,
   },
   {
     id: 2,
@@ -28,13 +27,11 @@ const PROPERTIES = [
     price: 'UF 4.200',
     location: 'Dalcahue, Chiloé',
     badge: 'En venta',
-    badgeBg: '#2B6F72',
-    badgeColor: 'white',
+    badgeBg: '#2B6F72', badgeColor: 'white',
     attrs: ['4 dorm', '3 baños', '180 m²'],
-    color1: '#D4C9B0',
-    color2: '#B8A98A',
-    category: 'Casas',
-    type: 'En venta',
+    color1: '#D4C9B0', color2: '#B8A98A',
+    category: 'Casas', type: 'En venta',
+    lat: -42.3813, lng: -73.6523,
   },
   {
     id: 3,
@@ -42,13 +39,11 @@ const PROPERTIES = [
     price: '$290.000/mes',
     location: 'Castro, Chiloé',
     badge: 'Nuevo',
-    badgeBg: 'white',
-    badgeColor: '#333333',
+    badgeBg: 'white', badgeColor: '#333333',
     attrs: ['2 dorm', '1 baño', '58 m²'],
-    color1: '#B8C8C4',
-    color2: '#8FA8A4',
-    category: 'Departamentos',
-    type: 'En arriendo',
+    color1: '#B8C8C4', color2: '#8FA8A4',
+    category: 'Departamentos', type: 'En arriendo',
+    lat: -42.4769, lng: -73.7618,
   },
   {
     id: 4,
@@ -56,13 +51,11 @@ const PROPERTIES = [
     price: '$320.000/mes',
     location: 'Castro, Chiloé',
     badge: 'En arriendo',
-    badgeBg: '#EBF4F5',
-    badgeColor: '#2B6F72',
+    badgeBg: '#EBF4F5', badgeColor: '#2B6F72',
     attrs: ['65 m²', '1 baño', 'Piso 1'],
-    color1: '#C8C4B8',
-    color2: '#A8A090',
-    category: 'Oficinas',
-    type: 'En arriendo',
+    color1: '#C8C4B8', color2: '#A8A090',
+    category: 'Oficinas', type: 'En arriendo',
+    lat: -42.4795, lng: -73.7658,
   },
   {
     id: 5,
@@ -70,13 +63,11 @@ const PROPERTIES = [
     price: 'UF 3.500',
     location: 'Ancud, Chiloé',
     badge: 'En venta',
-    badgeBg: '#2B6F72',
-    badgeColor: 'white',
+    badgeBg: '#2B6F72', badgeColor: 'white',
     attrs: ['3 dorm', '2 baños', '140 m²'],
-    color1: '#CBBFA8',
-    color2: '#A89880',
-    category: 'Casas',
-    type: 'En venta',
+    color1: '#CBBFA8', color2: '#A89880',
+    category: 'Casas', type: 'En venta',
+    lat: -41.8689, lng: -73.8280,
   },
   {
     id: 6,
@@ -84,13 +75,11 @@ const PROPERTIES = [
     price: 'UF 1.800',
     location: 'Quellón, Chiloé',
     badge: 'En venta',
-    badgeBg: '#2B6F72',
-    badgeColor: 'white',
+    badgeBg: '#2B6F72', badgeColor: 'white',
     attrs: ['800 m²', 'Esquina', 'Uso mixto'],
-    color1: '#B4C4C8',
-    color2: '#90A8AC',
-    category: 'Terrenos',
-    type: 'En venta',
+    color1: '#B4C4C8', color2: '#90A8AC',
+    category: 'Terrenos', type: 'En venta',
+    lat: -43.1192, lng: -73.6144,
   },
 ];
 
@@ -431,12 +420,203 @@ function renderPublish() {
   }
 }
 
+/* ── Map ────────────────────────────────────────────────── */
+
+let mapInstance = null;
+let mapMarkers = [];
+let mapActiveFilter = 'Todos';
+
+function renderMap() {
+  const mapFiltersEl = document.getElementById('map-filters');
+  const mapListEl    = document.getElementById('map-list');
+  const mapCountEl   = document.getElementById('map-count');
+
+  const filters = ['Todos', 'En arriendo', 'En venta'];
+
+  // Render filter buttons once
+  if (mapFiltersEl && !mapFiltersEl.dataset.rendered) {
+    mapFiltersEl.dataset.rendered = '1';
+    mapFiltersEl.innerHTML = filters.map(f => `
+      <button class="filter-btn map-filter-btn ${mapActiveFilter === f ? 'active' : ''}" data-mf="${f}">${f}</button>
+    `).join('');
+    mapFiltersEl.querySelectorAll('.map-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        mapActiveFilter = btn.dataset.mf;
+        mapFiltersEl.querySelectorAll('.map-filter-btn').forEach(b =>
+          b.classList.toggle('active', b.dataset.mf === mapActiveFilter));
+        applyMapFilter();
+      });
+    });
+  }
+
+  // Initialize Leaflet map
+  if (!mapInstance) {
+    mapInstance = L.map('leaflet-map', {
+      center: [-42.4784, -73.7629],
+      zoom: 12,
+      zoomControl: true,
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(mapInstance);
+
+    // Create markers
+    PROPERTIES.forEach(prop => {
+      const markerIcon = L.divIcon({
+        className: '',
+        html: `<div class="map-price-marker" data-marker-id="${prop.id}">${prop.price}</div>`,
+        iconAnchor: [0, 0],
+      });
+
+      const marker = L.marker([prop.lat, prop.lng], { icon: markerIcon });
+
+      const popupHTML = `
+        <div class="map-popup">
+          <div class="map-popup__photo" style="background: linear-gradient(135deg, ${prop.color1} 0%, ${prop.color2} 100%)">
+            ${icon('home', 32, 'rgba(255,255,255,0.45)')}
+          </div>
+          <div class="map-popup__body">
+            <span class="map-popup__badge" style="background:${prop.badgeBg};color:${prop.badgeColor}">${prop.badge}</span>
+            <div class="map-popup__title">${prop.title}</div>
+            <div class="map-popup__price">${prop.price}</div>
+            <div class="map-popup__attrs">${prop.attrs.map(a => `<span class="map-popup__attr">${a}</span>`).join('')}</div>
+            <button class="map-popup__btn" data-popup-prop-id="${prop.id}">Ver propiedad</button>
+          </div>
+        </div>
+      `;
+
+      marker.bindPopup(popupHTML, { maxWidth: 240, minWidth: 240, className: 'map-leaflet-popup' });
+
+      marker.on('click', () => {
+        setActiveMapCard(prop.id);
+      });
+
+      marker.on('popupopen', () => {
+        // Wire up the CTA button inside the popup
+        const popup = marker.getPopup().getElement();
+        if (popup) {
+          const ctaBtn = popup.querySelector('[data-popup-prop-id]');
+          if (ctaBtn) {
+            ctaBtn.addEventListener('click', () => {
+              navigate('detail', { prop });
+            });
+          }
+        }
+        // Highlight marker
+        const el = document.querySelector(`.map-price-marker[data-marker-id="${prop.id}"]`);
+        if (el) el.classList.add('active');
+      });
+
+      marker.on('popupclose', () => {
+        const el = document.querySelector(`.map-price-marker[data-marker-id="${prop.id}"]`);
+        if (el) el.classList.remove('active');
+      });
+
+      mapMarkers.push({ marker, prop });
+      marker.addTo(mapInstance);
+    });
+  } else {
+    // Map already exists — just invalidate size in case layout shifted
+    setTimeout(() => mapInstance.invalidateSize(), 50);
+  }
+
+  applyMapFilter();
+
+  // Mobile toggle buttons
+  const btnMap  = document.getElementById('map-btn-map');
+  const btnList = document.getElementById('map-btn-list');
+  const sidebar = document.querySelector('.map-sidebar');
+  const mapCont = document.querySelector('.map-container');
+
+  if (btnMap && btnList) {
+    btnMap.onclick = () => {
+      btnMap.classList.add('active'); btnList.classList.remove('active');
+      if (sidebar) sidebar.classList.remove('visible');
+      setTimeout(() => mapInstance && mapInstance.invalidateSize(), 50);
+    };
+    btnList.onclick = () => {
+      btnList.classList.add('active'); btnMap.classList.remove('active');
+      if (sidebar) sidebar.classList.add('visible');
+    };
+  }
+}
+
+function applyMapFilter() {
+  const mapListEl  = document.getElementById('map-list');
+  const mapCountEl = document.getElementById('map-count');
+
+  const visible = mapActiveFilter === 'Todos'
+    ? PROPERTIES
+    : PROPERTIES.filter(p => p.type === mapActiveFilter);
+
+  // Show/hide markers
+  mapMarkers.forEach(({ marker, prop }) => {
+    const show = visible.some(p => p.id === prop.id);
+    if (show) {
+      if (!mapInstance.hasLayer(marker)) marker.addTo(mapInstance);
+    } else {
+      if (mapInstance.hasLayer(marker)) mapInstance.removeLayer(marker);
+    }
+  });
+
+  // Update count
+  if (mapCountEl) {
+    mapCountEl.textContent = `${visible.length} propiedad${visible.length !== 1 ? 'es' : ''}`;
+  }
+
+  // Render sidebar list
+  if (mapListEl) {
+    mapListEl.innerHTML = visible.map(prop => `
+      <div class="map-prop-card" data-map-card-id="${prop.id}" tabindex="0" role="button">
+        <div class="map-prop-card__thumb" style="background: linear-gradient(135deg, ${prop.color1} 0%, ${prop.color2} 100%)">
+          ${icon('home', 24, 'rgba(255,255,255,0.5)')}
+        </div>
+        <div class="map-prop-card__body">
+          <span class="map-prop-card__badge" style="background:${prop.badgeBg};color:${prop.badgeColor}">${prop.badge}</span>
+          <div class="map-prop-card__title">${prop.title}</div>
+          <div class="map-prop-card__price">${prop.price}</div>
+          <div class="map-prop-card__location">${icon('map-pin', 10, 'var(--muted)')} ${prop.location}</div>
+          <div class="map-prop-card__attrs">${prop.attrs.slice(0, 2).map(a => `<span class="map-prop-card__attr">${a}</span>`).join('')}</div>
+        </div>
+      </div>
+    `).join('');
+
+    mapListEl.querySelectorAll('.map-prop-card').forEach(card => {
+      const id = parseInt(card.dataset.mapCardId, 10);
+      const { marker, prop } = mapMarkers.find(m => m.prop.id === id) || {};
+
+      card.addEventListener('click', () => {
+        if (marker && mapInstance) {
+          mapInstance.setView([prop.lat, prop.lng], 15, { animate: true });
+          marker.openPopup();
+        }
+        setActiveMapCard(id);
+      });
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+      });
+    });
+  }
+}
+
+function setActiveMapCard(propId) {
+  document.querySelectorAll('.map-prop-card').forEach(c => {
+    c.classList.toggle('active', parseInt(c.dataset.mapCardId, 10) === propId);
+  });
+  // Scroll sidebar card into view
+  const activeCard = document.querySelector(`.map-prop-card[data-map-card-id="${propId}"]`);
+  if (activeCard) activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
 function renderPage(page) {
   switch (page) {
     case 'home':     renderHome();     break;
     case 'listings': renderListings(); break;
     case 'detail':   renderDetail();   break;
     case 'publish':  renderPublish();  break;
+    case 'map':      renderMap();      break;
   }
 }
 
